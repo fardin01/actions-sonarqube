@@ -8,12 +8,15 @@ inputs:
   ca-cert:
     description: MTLS ca cert
     required: false
+    default: '${{ secrets.MTLS_CACERT }}'
   client-cert:
     description: MTLS client cert, configuring this will enable the proxy
     required: false
+    default: '${{ secrets.MTLS_CERT }}'
   client-key:
     description: MTLS client key
     required: false
+    default: '${{ secrets.MTLS_KEY }}'
   host:
     description: Sonarqube host
     default: https://sonar.prod.tools.tradeshift.net
@@ -29,12 +32,13 @@ inputs:
   token:
     description: Sonarqube access token
     required: true
+    default: '${{ secrets.SONAR_TOKEN }}'
   github-token:
     description: >
       Github token for cleaning up PR comments. By default, the automatic
       token provided by GitHub is used. You can see more info about GitHub's default token here:
       https://docs.github.com/en/actions/configuring-and-managing-workflows/authenticating-with-the-github_token
-    default: ${{ github.token }}
+    default: '${{ github.token }}'
     required: false
 runs:
   using: node16
